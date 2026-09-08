@@ -1,7 +1,7 @@
 const events = [
-  { date: "SÁB 22 JUN", title: "Fiesta Retro & Cumbia", description: "Una noche de clásicos, pista encendida y DJs invitados.", image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=85" },
-  { date: "VIE 28 JUN", title: "Estación Electrónica", description: "Frecuencias profundas y visuales inmersivas hasta el amanecer.", image: "https://images.unsplash.com/photo-1571266028243-d220c32d3f80?auto=format&fit=crop&w=800&q=85" },
-  { date: "SÁB 06 JUL", title: "Noche de Reinas", description: "El escenario de Calle Angosta recibe una celebración inolvidable.", image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=85" },
+  { date: "SÁB 08 AGO", title: "Brandub · August Muract", description: "Una noche de música y encuentro en la nueva estación de Villa Mercedes.", image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=85" },
+  { date: "SÁB 05 SEP", title: "Emi Llopiz b2b Lucas Roldán", description: "Dos sets, una pista y toda la energía de Estación 57.", image: "https://images.unsplash.com/photo-1571266028243-d220c32d3f80?auto=format&fit=crop&w=800&q=85", ticketUrl: "https://alpogo.com/evento/emi-llopiz-b2b-lucas-roldan-de-hass-28750" },
+  { date: "PRÓXIMAMENTE", title: "Marlene", description: "La noche sigue tomando forma. Atentos a nuestras próximas fechas.", image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=85" },
 ];
 
 export default function Home() {
@@ -12,16 +12,17 @@ export default function Home() {
       <a className="admin-link" href="/admin">Panel de gestión</a>
     </div></header>
     <section className="hero" id="inicio"><div className="shell hero-inner">
-      <p className="eyebrow">Calle Angosta · Villa Mercedes, San Luis</p>
-      <h1>El pulso de la noche.</h1>
-      <p className="hero-copy">Música, encuentro y experiencias en el corazón del predio Calle Angosta. La estación donde siempre pasa algo.</p>
+      <p className="eyebrow">Villa Mercedes · San Luis</p>
+      <h1>La noche tiene nueva estación.</h1>
+      <p className="hero-copy">Un club dentro de un tren histórico. Música, encuentro y experiencias en el corazón de Calle Angosta.</p>
       <div className="actions"><a className="button" href="#eventos">Ver cartelera</a><a className="button button-secondary" href="#ubicacion">Cómo llegar</a></div>
     </div></section>
     <section className="section" id="eventos"><div className="shell">
       <div className="section-heading"><div><p className="eyebrow">Agenda 2026</p><h2>Próximas estaciones</h2></div><p className="section-note">Elegí tu próxima noche. Actualizamos la cartelera cada semana.</p></div>
-      <div className="events-grid">{events.map((event) => <article className="event-card" key={event.title}><div className="event-image"><img src={event.image} alt={event.title} /><span className="event-date">{event.date}</span></div><div className="event-content"><h3>{event.title}</h3><p>{event.description}</p><a className="event-link" href="#contacto">Entradas y reservas <span aria-hidden="true">→</span></a></div></article>)}</div>
+      <div className="events-grid">{events.map((event) => <article className="event-card" key={event.title}><div className="event-image"><img src={event.image} alt={event.title} /><span className="event-date">{event.date}</span></div><div className="event-content"><h3>{event.title}</h3><p>{event.description}</p><a className="event-link" href={event.ticketUrl ?? "#contacto"} target={event.ticketUrl ? "_blank" : undefined} rel={event.ticketUrl ? "noreferrer" : undefined}>{event.ticketUrl ? "Comprar entradas" : "Más información"} <span aria-hidden="true">→</span></a></div></article>)}</div>
     </div></section>
-    <section className="section location" id="ubicacion"><div className="shell location-grid"><div><p className="eyebrow">Encontranos</p><h2>Donde la ciudad se encuentra.</h2><p>Estamos en el predio Calle Angosta, Villa Mercedes, San Luis. Vení temprano, quedate hasta tarde.</p><a className="button button-secondary" href="https://www.google.com/maps/search/Calle+Angosta+Villa+Mercedes+San+Luis" target="_blank" rel="noreferrer">Abrir en Maps</a></div><div className="map-frame" role="img" aria-label="Imagen del predio Calle Angosta"></div></div></section>
-    <footer className="shell footer" id="contacto"><span>© 2026 Estación 57</span><span>Predio Calle Angosta · Villa Mercedes · San Luis</span><span>Instagram · WhatsApp</span></footer>
+    <section className="section location" id="ubicacion"><div className="shell location-grid"><div><p className="eyebrow">Encontranos</p><h2>Donde la ciudad se encuentra.</h2><p>Av. Los Álamos y Calle Angosta<br />Villa Mercedes · San Luis</p><a className="button button-secondary" href="https://www.google.com/maps/search/Av.+Los+Alamos+y+Calle+Angosta+Villa+Mercedes+San+Luis" target="_blank" rel="noreferrer">Abrir en Maps</a></div><div className="map-frame" role="img" aria-label="Imagen del predio Calle Angosta"></div></div></section>
+    <section className="instagram-section" aria-label="Instagram"><div className="shell instagram-inner"><div><p className="eyebrow">Seguí la estación</p><h2>@estacion57</h2><p>Flyers, próximas fechas y todo lo que pasa en el club.</p></div><a className="button" href="https://www.instagram.com/estacion57" target="_blank" rel="noreferrer">Abrir Instagram ↗</a></div></section>
+    <footer className="shell footer" id="contacto"><span>© 2026 Estación 57</span><span>Av. Los Álamos y Calle Angosta · Villa Mercedes</span><a href="https://www.instagram.com/estacion57" target="_blank" rel="noreferrer">Instagram · @estacion57</a></footer>
   </main>;
 }
