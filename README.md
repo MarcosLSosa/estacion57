@@ -22,7 +22,7 @@ Sitio web para Estacion 57, un club dentro de un tren historico ubicado en Villa
   - Av. Los Alamos y Calle Angosta.
   - Villa Mercedes, San Luis.
 - Boton para abrir la ubicacion en Google Maps.
-- Seccion de Instagram con enlace a `@estacion57`.
+- Seccion de Instagram con enlace a `@estacion57_vm`.
 - Pie de pagina con la marca, direccion e Instagram.
 
 ### Panel de administracion (`/admin`)
