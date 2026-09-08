@@ -1,3 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+type PublishedEvent = { title: string; date: string; description: string; image: string };
+
 const events = [
   { date: "SÁB 08 AGO", title: "Brandub · August Muract", description: "Una noche de música y encuentro en la nueva estación de Villa Mercedes.", image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=85" },
   { date: "SÁB 05 SEP", title: "Emi Llopiz b2b Lucas Roldán", description: "Dos sets, una pista y toda la energía de Estación 57.", image: "https://images.unsplash.com/photo-1571266028243-d220c32d3f80?auto=format&fit=crop&w=800&q=85", ticketUrl: "https://alpogo.com/evento/emi-llopiz-b2b-lucas-roldan-de-hass-28750" },
@@ -5,6 +11,13 @@ const events = [
 ];
 
 export default function Home() {
+  const [welcomeEvent, setWelcomeEvent] = useState<PublishedEvent | null>(null);
+
+  useEffect(() => {
+    const savedEvent = window.localStorage.getItem("estacion57:welcome-event");
+    if (savedEvent) setWelcomeEvent(JSON.parse(savedEvent));
+  }, []);
+
   return <main>
     <header className="topbar"><div className="shell nav">
       <a className="brand" href="#inicio"><span className="brand-mark"><span>57</span></span> ESTACIÓN 57</a>
@@ -24,5 +37,6 @@ export default function Home() {
     <section className="section location" id="ubicacion"><div className="shell location-grid"><div><p className="eyebrow">Encontranos</p><h2>Donde la ciudad se encuentra.</h2><p>Av. Los Álamos y Calle Angosta<br />Villa Mercedes · San Luis</p><a className="button button-secondary" href="https://www.google.com/maps/search/Av.+Los+Alamos+y+Calle+Angosta+Villa+Mercedes+San+Luis" target="_blank" rel="noreferrer">Abrir en Maps</a></div><div className="map-frame" role="img" aria-label="Imagen del predio Calle Angosta"></div></div></section>
     <section className="instagram-section" aria-label="Instagram"><div className="shell instagram-inner"><div><p className="eyebrow">Seguí la estación</p><h2>@estacion57</h2><p>Flyers, próximas fechas y todo lo que pasa en el club.</p></div><a className="button" href="https://www.instagram.com/estacion57" target="_blank" rel="noreferrer">Abrir Instagram ↗</a></div></section>
     <footer className="shell footer" id="contacto"><span>© 2026 Estación 57</span><span>Av. Los Álamos y Calle Angosta · Villa Mercedes</span><a href="https://www.instagram.com/estacion57" target="_blank" rel="noreferrer">Instagram · @estacion57</a></footer>
+    {welcomeEvent && <div className="welcome-backdrop" role="dialog" aria-modal="true" aria-label={`Flyer de ${welcomeEvent.title}`}><div className="welcome-popup"><button className="welcome-close" type="button" onClick={() => setWelcomeEvent(null)} aria-label="Cerrar flyer">×</button><div className="welcome-poster"><img src={welcomeEvent.image} alt={`Flyer de ${welcomeEvent.title}`} /></div><div className="welcome-copy"><p className="eyebrow">Próxima estación</p><h2>{welcomeEvent.title}</h2><p>{welcomeEvent.description || "La noche tiene nueva estación."}</p><p className="welcome-date">{welcomeEvent.date}</p><a className="button" href="#eventos" onClick={() => setWelcomeEvent(null)}>Ver evento</a></div></div></div>}
   </main>;
 }
