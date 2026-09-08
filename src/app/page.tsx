@@ -20,7 +20,7 @@ export default function Home() {
 
   return <main>
     <header className="topbar"><div className="shell nav">
-      <a className="brand" href="#inicio"><span className="brand-mark"><span>57</span></span> ESTACIÓN 57</a>
+      <a className="brand" href="#inicio" aria-label="Estación 57"><span className="brand-mark"><span>EST</span><strong>57!</strong></span> ESTACIÓN 57</a>
       <nav className="nav-links" aria-label="Navegación principal"><a href="#eventos">Cartelera</a><a href="#ubicacion">Ubicación</a><a href="#contacto">Contacto</a></nav>
       <a className="admin-link" href="/admin">Panel de gestión</a>
     </div></header>
