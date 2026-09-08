@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     const savedEvent = window.localStorage.getItem("estacion57:welcome-event");
-    if (savedEvent) setWelcomeEvent(JSON.parse(savedEvent));
+    setWelcomeEvent(savedEvent ? JSON.parse(savedEvent) : events[1]);
   }, []);
 
   return <main>
