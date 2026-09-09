@@ -25,11 +25,12 @@ export default function Home() {
       <a className="admin-link" href="/admin">Panel de gestión</a>
     </div></header>
     <section className="hero" id="inicio"><video className="hero-video" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85" aria-hidden="true"><source src="/images/fondo-pista.mp4" type="video/mp4" /></video><div className="shell hero-inner">
-      <p className="eyebrow">Villa Mercedes · San Luis</p>
+      <div className="live-status"><span className="live-dot" /> Estación abierta · Villa Mercedes</div>
       <h1>La noche tiene nueva estación.</h1>
       <p className="hero-copy">Un club dentro de un tren histórico. Música, encuentro y experiencias en el corazón de Calle Angosta.</p>
       <div className="actions"><a className="button" href="#eventos">Ver cartelera</a><a className="button button-secondary" href="#ubicacion">Cómo llegar</a></div>
     </div></section>
+    <div className="ticker" aria-label="Información de Estación 57"><div className="ticker-track"><span>ESTACIÓN 57</span><i>✦</i><span>MÚSICA · CLUB · ENCUENTRO</span><i>✦</i><span>VILLA MERCEDES · SAN LUIS</span><i>✦</i><span>ESTACIÓN 57</span><i>✦</i><span>MÚSICA · CLUB · ENCUENTRO</span><i>✦</i></div></div>
     <section className="section" id="eventos"><div className="shell">
       <div className="section-heading"><div><p className="eyebrow">Agenda 2026</p><h2>Próximas estaciones</h2></div><p className="section-note">Elegí tu próxima noche. Actualizamos la cartelera cada semana.</p></div>
       <div className="events-grid">{events.map((event) => <article className="event-card" key={event.title}><div className="event-image"><img src={event.image} alt={event.title} onError={(image) => { image.currentTarget.src = events[0].image; }} /><span className="event-date">{event.date}</span></div><div className="event-content"><h3>{event.title}</h3><p>{event.description}</p><a className="event-link" href={event.ticketUrl ?? "#contacto"} target={event.ticketUrl ? "_blank" : undefined} rel={event.ticketUrl ? "noreferrer" : undefined}>{event.ticketUrl ? "Comprar entradas" : "Más información"} <span aria-hidden="true">→</span></a></div></article>)}</div>
