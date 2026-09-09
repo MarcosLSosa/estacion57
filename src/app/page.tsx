@@ -6,7 +6,7 @@ type PublishedEvent = { title: string; date: string; description: string; image:
 
 const events = [
   { date: "SÁB 08 AGO", title: "Brandub · August Muract", description: "Una noche de música y encuentro en la nueva estación de Villa Mercedes.", image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=85" },
-  { date: "SÁB 05 SEP", title: "Emi Llopiz b2b Lucas Roldán", description: "Dos sets, una pista y toda la energía de Estación 57.", image: "https://images.unsplash.com/photo-1571266028243-d220c32d3f80?auto=format&fit=crop&w=800&q=85", ticketUrl: "https://alpogo.com/evento/emi-llopiz-b2b-lucas-roldan-de-hass-28750" },
+  { date: "SÁB 05 SEP", title: "Emi Llopiz b2b Lucas Roldán", description: "Dos sets, una pista y toda la energía de Estación 57.", image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=85", ticketUrl: "https://alpogo.com/evento/emi-llopiz-b2b-lucas-roldan-de-hass-28750" },
   { date: "PRÓXIMAMENTE", title: "Marlene", description: "La noche sigue tomando forma. Atentos a nuestras próximas fechas.", image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=85" },
 ];
 
