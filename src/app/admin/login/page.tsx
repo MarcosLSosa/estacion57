@@ -9,7 +9,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(searchParams.get("config") === "missing" ? "Falta configurar Supabase en las variables de Vercel." : "");
+  const [error, setError] = useState(searchParams.get("config") === "missing" ? "Falta configurar Supabase en las variables de Vercel." : searchParams.get("config") === "unauthorized" ? "Tu usuario no tiene permisos para acceder al panel." : "");
 
   async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

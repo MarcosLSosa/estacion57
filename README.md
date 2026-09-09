@@ -27,7 +27,7 @@ Sitio web para Estacion 57, un club dentro de un tren historico ubicado en Villa
 
 ### Panel de administracion (`/admin`)
 
-El panel funciona actualmente como una demostracion visual y de interaccion:
+El panel permite gestionar eventos reales en Supabase:
 
 - Resumen de eventos publicados.
 - Indicador de proxima fecha.
@@ -35,10 +35,11 @@ El panel funciona actualmente como una demostracion visual y de interaccion:
 - Formulario para cargar un evento con titulo, fecha y descripcion.
 - Area visual para seleccionar o arrastrar un flyer.
 - Listado de eventos cargados.
-- Eliminacion de eventos del listado demo.
+- Eliminacion de eventos del listado.
 - Navegacion para volver al sitio publico.
-
-Los eventos agregados desde el panel se guardan solamente en el estado del navegador. Al recargar la pagina se recuperan los datos iniciales porque la conexion con Supabase todavia no esta implementada.
+- Alta de eventos con fecha, descripcion y flyer.
+- Listado y eliminacion de eventos persistidos.
+- Acceso protegido por Supabase Auth y roles `admin` o `editor`.
 
 ## Identidad visual
 
@@ -96,7 +97,7 @@ El panel esta disponible en [http://localhost:3000/admin](http://localhost:3000/
 ├── src/
 │   └── app/
 │       ├── admin/
-│       │   └── page.tsx       # Panel de administracion demo
+│       │   └── page.tsx       # Panel de administracion conectado a Supabase
 │       ├── globals.css         # Estilos globales e identidad visual
 │       ├── layout.tsx          # Layout, metadata y fuentes globales
 │       └── page.tsx            # Sitio publico y cartelera
@@ -120,18 +121,30 @@ El archivo `supabase/schema.sql` define la tabla `public.eventos` con:
 - `activo`: permite mostrar u ocultar eventos.
 - `created_at`: fecha de creacion.
 
-Tambien crea el bucket publico `flyers` y politicas RLS para que los eventos activos sean visibles publicamente y los usuarios autenticados puedan gestionarlos.
+Tambien crea el bucket publico `flyers`, perfiles de usuarios y politicas RLS para que los eventos activos sean visibles publicamente y solo los usuarios con rol `admin` o `editor` puedan gestionarlos.
 
-## Estado actual y proximos pasos
+## Crear usuarios del panel
 
-La base visual y las interacciones principales ya estan implementadas. Para convertir el panel en un CMS real seria necesario:
+1. Ejecutar todo `supabase/schema.sql` desde el SQL Editor del proyecto Supabase.
+2. Crear cada usuario desde **Authentication > Users > Add user**, con email y contraseña.
+3. El trigger crea automáticamente su perfil. Para dar acceso al primer usuario, ejecutar:
 
-1. Configurar las variables de entorno de Supabase.
-2. Reemplazar los datos estaticos de `page.tsx` por consultas a `public.eventos`.
-3. Conectar el formulario del panel con Supabase.
-4. Implementar la carga real de flyers al bucket `flyers`.
-5. Agregar autenticacion y proteger la ruta `/admin`.
-6. Reemplazar las imagenes de muestra por los flyers definitivos de cada evento.
+```sql
+update public.perfiles
+set rol = 'admin'
+where id = (select id from auth.users where email = 'admin@tudominio.com');
+```
+
+Usar `rol = 'editor'` para el resto del equipo. La URL y la clave pública deben estar configuradas como `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` en `.env.local` y en Vercel.
+
+## Configuracion de variables
+
+Crear `.env.local` con las credenciales publicas del proyecto:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-clave-anon
+```
 
 ## Verificacion
 

@@ -41,6 +41,18 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  const { data: perfil } = await supabase
+    .from("perfiles")
+    .select("rol")
+    .eq("id", user.id)
+    .maybeSingle();
+  if (!perfil || !["admin", "editor"].includes(perfil.rol)) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/admin/login";
+    loginUrl.searchParams.set("config", "unauthorized");
+    return NextResponse.redirect(loginUrl);
+  }
+
   return response;
 }
 
