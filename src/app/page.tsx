@@ -24,7 +24,7 @@ export default function Home() {
       <nav className="nav-links" aria-label="Navegación principal"><a href="#eventos">Cartelera</a><a href="#ubicacion">Ubicación</a><a href="#contacto">Contacto</a></nav>
       <a className="admin-link" href="/admin">Panel de gestión</a>
     </div></header>
-    <section className="hero" id="inicio"><div className="shell hero-inner">
+    <section className="hero" id="inicio"><video className="hero-video" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85" aria-hidden="true"><source src="https://cdn.coverr.co/videos/coverr-a-crowd-at-a-concert-1573/1080p.mp4" type="video/mp4" /></video><div className="shell hero-inner">
       <p className="eyebrow">Villa Mercedes · San Luis</p>
       <h1>La noche tiene nueva estación.</h1>
       <p className="hero-copy">Un club dentro de un tren histórico. Música, encuentro y experiencias en el corazón de Calle Angosta.</p>
@@ -32,7 +32,7 @@ export default function Home() {
     </div></section>
     <section className="section" id="eventos"><div className="shell">
       <div className="section-heading"><div><p className="eyebrow">Agenda 2026</p><h2>Próximas estaciones</h2></div><p className="section-note">Elegí tu próxima noche. Actualizamos la cartelera cada semana.</p></div>
-      <div className="events-grid">{events.map((event) => <article className="event-card" key={event.title}><div className="event-image"><img src={event.image} alt={event.title} /><span className="event-date">{event.date}</span></div><div className="event-content"><h3>{event.title}</h3><p>{event.description}</p><a className="event-link" href={event.ticketUrl ?? "#contacto"} target={event.ticketUrl ? "_blank" : undefined} rel={event.ticketUrl ? "noreferrer" : undefined}>{event.ticketUrl ? "Comprar entradas" : "Más información"} <span aria-hidden="true">→</span></a></div></article>)}</div>
+      <div className="events-grid">{events.map((event) => <article className="event-card" key={event.title}><div className="event-image"><img src={event.image} alt={event.title} onError={(image) => { image.currentTarget.src = events[0].image; }} /><span className="event-date">{event.date}</span></div><div className="event-content"><h3>{event.title}</h3><p>{event.description}</p><a className="event-link" href={event.ticketUrl ?? "#contacto"} target={event.ticketUrl ? "_blank" : undefined} rel={event.ticketUrl ? "noreferrer" : undefined}>{event.ticketUrl ? "Comprar entradas" : "Más información"} <span aria-hidden="true">→</span></a></div></article>)}</div>
     </div></section>
     <section className="section location" id="ubicacion"><div className="shell location-grid"><div><p className="eyebrow">Encontranos</p><h2>Donde la ciudad se encuentra.</h2><p>Av. Los Álamos y Calle Angosta<br />Villa Mercedes · San Luis</p><a className="button button-secondary" href="https://www.google.com/maps/search/Av.+Los+Alamos+y+Calle+Angosta+Villa+Mercedes+San+Luis" target="_blank" rel="noreferrer">Abrir en Maps</a></div><div className="map-frame" role="img" aria-label="Imagen del predio Calle Angosta"></div></div></section>
     <section className="instagram-section" aria-label="Instagram"><div className="shell instagram-inner"><div><p className="eyebrow">Seguí la estación</p><h2>@estacion57_vm</h2><p>Flyers, próximas fechas y todo lo que pasa en el club.</p></div><a className="button" href="https://www.instagram.com/estacion57_vm/" target="_blank" rel="noreferrer">Abrir Instagram ↗</a></div></section>
