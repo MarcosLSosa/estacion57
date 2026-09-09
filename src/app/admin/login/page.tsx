@@ -1,10 +1,10 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
@@ -25,4 +25,8 @@ export default function AdminLoginPage() {
   }
 
   return <main className="auth-page"><div className="auth-panel"><a className="brand" href="/"><span className="brand-mark"><span>EST</span><strong>57!</strong></span> ESTACIÓN 57</a><p className="eyebrow">Acceso privado</p><h1>Panel de gestión.</h1><p>Solo el equipo autorizado puede administrar eventos y validar entradas.</p><form onSubmit={login}><label>Email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required /></label><label>Contraseña<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required /></label><button className="button" type="submit">Ingresar <span>→</span></button>{error && <p className="auth-error">{error}</p>}</form></div></main>;
+}
+
+export default function AdminLoginPage() {
+  return <Suspense fallback={<main className="auth-page" />}><LoginForm /></Suspense>;
 }

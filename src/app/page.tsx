@@ -24,7 +24,7 @@ export default function Home() {
       <nav className="nav-links" aria-label="Navegación principal"><a href="#eventos">Cartelera</a><a href="#ubicacion">Ubicación</a><a href="#contacto">Contacto</a></nav>
       <a className="admin-link" href="/admin">Panel de gestión</a>
     </div></header>
-    <section className="hero" id="inicio"><video className="hero-video" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85" aria-hidden="true"><source src="https://cdn.coverr.co/videos/coverr-a-crowd-at-a-concert-1573/1080p.mp4" type="video/mp4" /></video><div className="shell hero-inner">
+    <section className="hero" id="inicio"><video className="hero-video" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85" aria-hidden="true"><source src="/images/fondo-pista.mp4" type="video/mp4" /></video><div className="shell hero-inner">
       <p className="eyebrow">Villa Mercedes · San Luis</p>
       <h1>La noche tiene nueva estación.</h1>
       <p className="hero-copy">Un club dentro de un tren histórico. Música, encuentro y experiencias en el corazón de Calle Angosta.</p>
