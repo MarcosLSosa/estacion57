@@ -9,18 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "latest",
+    "html5-qrcode": "^2.3.8",
     "next": "latest",
+    "qrcode.react": "^4.2.0",
     "react": "latest",
-    "react-dom": "latest",
-    "@supabase/supabase-js": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "@tailwindcss/postcss": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"
