@@ -9,11 +9,15 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(searchParams.get("config") === "missing" ? "Falta configurar Supabase en las variables de Vercel." : "");
 
   async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      setError("Falta configurar Supabase en las variables de Vercel.");
+      return;
+    }
     const supabase = createClient();
     const { error: loginError } = await supabase.auth.signInWithPassword({ email, password });
     if (loginError) {
